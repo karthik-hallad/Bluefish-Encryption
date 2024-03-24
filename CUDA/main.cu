@@ -36,8 +36,7 @@ int main(int argc, char *argv[])
 	{
 		printf("Error initiating key\n");
 		return -1;
-	} else printf("");
-
+	} 
 	// Hash original file
 	hash_original = hash(file, numblocks);
 	printf("Original hash = %llx\n", (unsigned long long)hash_original);
