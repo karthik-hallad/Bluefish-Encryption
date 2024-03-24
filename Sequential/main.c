@@ -42,12 +42,10 @@ int main(int argc, char *argv[])
 	printf("Original hash = %llx\n", (unsigned long long)hash_original);
 
 	//__________ENCRYPTION__________
-	printf("");
 
 	blowfish_encryptptr(context, file, numblocks, &runtime, &rate);
 	hash_encrypted = hash(file, numblocks);
 
-	printf("");
 	printf("Time taken: %lf milliseconds\n", runtime*1e3);
 	printf("Average speed: %lf MB/s\n", rate/MEGABYTE);
 	printf("Encrypted hash = %llx\n", (unsigned long long)hash_encrypted);
