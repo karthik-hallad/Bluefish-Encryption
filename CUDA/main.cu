@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
 	//splashscreen();
-	version();
+	//version();
 	// Misc variables
 	int status = 0;
 	uint64_t hash_original, hash_encrypted, hash_decrypted;
@@ -36,14 +36,13 @@ int main(int argc, char *argv[])
 	{
 		printf("Error initiating key\n");
 		return -1;
-	} else printf("Key schedule complete!\n");
+	} else printf("");
 
 	// Hash original file
 	hash_original = hash(file, numblocks);
 	printf("Original hash = %llx\n", (unsigned long long)hash_original);
 
 	// CUDA Starts
-	printf("CUDA Starts!\n");
 
 	int i;
 	const int numStreams = NUM_STREAMS;
@@ -71,7 +70,6 @@ int main(int argc, char *argv[])
 	int gridsize = (numblocks/(blocksize<<1)+1)/numStreams;
 
 	//__________ENCRYPTION__________
-	printf("Encryption starts...\n");
 
 	cudaEventRecord(start);
 
@@ -92,13 +90,11 @@ int main(int argc, char *argv[])
 	cudaEventElapsedTime(&cudaRuntime, start, stop);
 	rate = (filesize*1e3)/(cudaRuntime);
 
-	printf("Encryption done!\n");
 	printf("Time taken: %lf milliseconds\n", cudaRuntime);
 	printf("Average speed: %lf MB/s\n", rate/MEGABYTE);
 	printf("Encrypted hash = %llx\n", (unsigned long long)hash_encrypted);
 
 	//__________DECRYPTION__________
-	printf("Decryption starts...\n");
 
 	cudaEventRecord(start);
 	for (i = 0; i < numStreams; ++i)
@@ -118,7 +114,6 @@ int main(int argc, char *argv[])
 	cudaEventElapsedTime(&cudaRuntime, start, stop);
 	rate = (filesize*1e3)/(cudaRuntime);
 
-	printf("Decryption done!\n");
 	printf("Time taken: %lf milliseconds\n", cudaRuntime);
 	printf("Average speed: %lf MB/s\n", rate/MEGABYTE);
 	printf("Decrypted hash = %llx\n", (unsigned long long)hash_decrypted);
