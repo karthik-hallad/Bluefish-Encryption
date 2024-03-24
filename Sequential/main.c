@@ -35,30 +35,29 @@ int main(int argc, char *argv[])
 	{
 		printf("Error initiating key\n");
 		return -1;
-	} else printf("Key schedule complete!\n");
+	} else printf("");
 
 	// Hash original file
 	hash_original = hash(file, numblocks);
 	printf("Original hash = %llx\n", (unsigned long long)hash_original);
 
 	//__________ENCRYPTION__________
-	printf("Encryption starts...\n");
+	printf("");
 
 	blowfish_encryptptr(context, file, numblocks, &runtime, &rate);
 	hash_encrypted = hash(file, numblocks);
 
-	printf("Encryption done!\n");
+	printf("");
 	printf("Time taken: %lf milliseconds\n", runtime*1e3);
 	printf("Average speed: %lf MB/s\n", rate/MEGABYTE);
 	printf("Encrypted hash = %llx\n", (unsigned long long)hash_encrypted);
 
 	//__________DECRYPTION__________
-	printf("Decryption starts...\n");
 
 	blowfish_decryptptr(context, file, numblocks, &runtime, &rate);
 	hash_decrypted = hash(file, numblocks);
 
-	printf("Decryption done!\n");
+	
 	printf("Time taken: %lf milliseconds\n", runtime*1e3);
 	printf("Average speed: %lf MB/s\n", rate/MEGABYTE);
 	printf("Decrypted hash = %llx\n", (unsigned long long)hash_decrypted);
