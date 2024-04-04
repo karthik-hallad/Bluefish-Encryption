@@ -1,5 +1,4 @@
-By Darshan D V(16CO216) and (16CO232) and Piyush Hanchate | Sequential version
-File size = 943718400 bytes, numblocks = 117964800
+\File size = 943718400 bytes, numblocks = 117964800
 Key = TESTKEY, length = 7
 Key schedule complete!
 Original hash = dbf8d214f6639d3a
