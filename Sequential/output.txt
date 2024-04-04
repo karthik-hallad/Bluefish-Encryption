@@ -1,4 +1,3 @@
-By Darshan D V(16CO216) and (16CO232) and Piyush Hanchate | Sequential version
 File size = 943718400 bytes, numblocks = 117964800
 Key = TESTKEY, length = 7
 Key schedule complete!
